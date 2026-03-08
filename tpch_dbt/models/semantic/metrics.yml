@@ -1,0 +1,23 @@
+version: 2
+
+metrics:
+  - name: total_revenue
+    description: "Total net revenue"
+    type: simple
+    label: "Total Revenue"
+    type_params:
+      measure: net_revenue
+
+  - name: total_orders
+    description: "Total number of orders"
+    type: simple
+    label: "Total Orders"
+    type_params:
+      measure: order_count
+
+  - name: average_order_value
+    description: "Average value per order"
+    type: simple
+    label: "Average Order Value"
+    type_params:
+      measure: avg_order_value

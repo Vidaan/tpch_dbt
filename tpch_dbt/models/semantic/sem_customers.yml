@@ -1,0 +1,35 @@
+version: 2
+
+semantic_models:
+  - name: customers
+    description: "Customer dimension for TPC-H analysis"
+    model: ref('dim_customers')
+
+    entities:
+      - name: customer_id
+        type: primary
+        expr: customer_key
+
+    dimensions:
+      - name: customer_name
+        type: categorical
+        expr: customer_name
+      - name: market_segment
+        type: categorical
+        expr: market_segment
+      - name: nation_name
+        type: categorical
+        expr: nation_name
+      - name: region_name
+        type: categorical
+        expr: region_name
+
+    measures:
+      - name: customer_count
+        description: "Count of customers"
+        agg: count_distinct
+        expr: customer_key
+      - name: total_account_balance
+        description: "Sum of customer account balances"
+        agg: sum
+        expr: account_balance

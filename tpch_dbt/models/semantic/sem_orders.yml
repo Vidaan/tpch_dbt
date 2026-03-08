@@ -1,0 +1,63 @@
+version: 2
+
+semantic_models:
+  - name: orders
+    description: "Order transactions for TPC-H sales analysis"
+    model: ref('fct_orders')
+    defaults:
+      agg_time_dimension: order_date
+
+    entities:
+      - name: order_id
+        type: primary
+        expr: order_key
+      - name: customer_id
+        type: foreign
+        expr: customer_key
+
+    dimensions:
+      - name: customer_name
+        type: categorical
+        expr: customer_name
+      - name: market_segment
+        type: categorical
+        expr: market_segment
+      - name: customer_region
+        type: categorical
+        expr: customer_region
+      - name: customer_nation
+        type: categorical
+        expr: customer_nation
+      - name: order_status
+        type: categorical
+        expr: order_status
+      - name: order_priority
+        type: categorical
+        expr: order_priority
+      - name: order_date
+        type: time
+        type_params:
+          time_granularity: day
+        expr: order_date
+
+    measures:
+      - name: order_count
+        description: "Count of orders"
+        agg: count
+        expr: order_key
+      - name: total_quantity
+        description: "Total quantity ordered"
+        agg: sum
+        expr: total_quantity
+      - name: gross_revenue
+        description: "Gross revenue before discounts"
+        agg: sum
+        expr: gross_amount
+      - name: net_revenue
+        description: "Net revenue after discounts"
+        agg: sum
+        expr: net_amount
+      - name: avg_order_value
+        description: "Average order value"
+        agg: average
+        expr: net_amount
