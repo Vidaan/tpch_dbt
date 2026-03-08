@@ -1,0 +1,12 @@
+tpch_dbt:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: si59515
+      user: TESTSNOWFLAKE
+      role: ACCOUNTADMIN
+      database: DBT_DB
+      warehouse: COMPUTE_WH
+      schema: DBT_SCH
+      threads: 4

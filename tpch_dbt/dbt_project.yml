@@ -1,0 +1,21 @@
+name: 'tpch_dbt'
+version: '1.0.0'
+
+profile: 'tpch_dbt'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  tpch_dbt:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table
